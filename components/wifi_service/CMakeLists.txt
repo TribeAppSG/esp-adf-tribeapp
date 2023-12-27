@@ -8,9 +8,12 @@ set(COMPONENT_PRIV_REQUIRES audio_sal esp_dispatcher esp_actions)
 list(APPEND COMPONENT_SRCS src/esp_wifi_setting.c
                     src/wifi_service.c
                     src/wifi_ssid_manager.c
-                    smart_config/smart_config.c
-                    blufi_config/blufi_config.c
+                    smart_config/smart_config.c)
+					
+if(CONFIG_ADF_ENABLE_BT_SERVICE)
+	list(APPEND COMPONENT_SRCS blufi_config/blufi_config.c
                     blufi_config/blufi_security.c)
+endif()
 
 IF (CONFIG_IDF_TARGET STREQUAL "esp32c3")
     register_component()
