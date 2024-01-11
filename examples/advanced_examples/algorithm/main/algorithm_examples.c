@@ -30,7 +30,7 @@ static const char *TAG = "ALGORITHM_EXAMPLES";
 // #define DEBUG_ALGO_INPUT
 
 #define I2S_SAMPLE_RATE     8000
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
 #define I2S_CHANNELS        I2S_CHANNEL_FMT_RIGHT_LEFT
 #else
 #define I2S_CHANNELS        I2S_CHANNEL_FMT_ONLY_LEFT
@@ -143,7 +143,7 @@ void app_main()
     ESP_LOGI(TAG, "[2.0] Start codec chip");
     i2s_driver_init(I2S_NUM_0, I2S_CHANNELS, I2S_BITS);
 
-#if (CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || CONFIG_ESP32_S3_KORVO2_V3_BOARD)
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined CONFIG_ESP32_S3_KORVO2_V3_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     audio_board_handle_t board_handle = (audio_board_handle_t) audio_calloc(1, sizeof(struct audio_board_handle));
     audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_DEFAULT_CONFIG();
     audio_codec_cfg.i2s_iface.samples = AUDIO_HAL_08K_SAMPLES;
@@ -155,7 +155,7 @@ void app_main()
     audio_hal_ctrl_codec(board_handle->audio_hal, AUDIO_HAL_CODEC_MODE_BOTH, AUDIO_HAL_CTRL_START);
     audio_hal_set_volume(board_handle->audio_hal, 60);
 
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     i2s_driver_init(I2S_NUM_1, I2S_CHANNELS, I2S_BITS);
 #endif
 
@@ -169,13 +169,13 @@ void app_main()
 #if !RECORD_HARDWARE_AEC
     algo_config.input_type = ALGORITHM_STREAM_INPUT_TYPE2;
 #endif
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     algo_config.ref_linear_factor = 3;
 #endif
 #ifdef DEBUG_ALGO_INPUT
     algo_config.debug_input = true;
 #endif
-#if (CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || CONFIG_ESP32_S3_KORVO2_V3_BOARD)
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined CONFIG_ESP32_S3_KORVO2_V3_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     algo_config.swap_ch = true;
 #endif
     algo_config.sample_rate = I2S_SAMPLE_RATE;
@@ -223,7 +223,7 @@ void app_main()
     rsp_cfg_w.src_rate = 16000;
     rsp_cfg_w.src_ch = 1;
     rsp_cfg_w.dest_rate = I2S_SAMPLE_RATE;
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     rsp_cfg_w.dest_ch = 2;
 #else
     rsp_cfg_w.dest_ch = 1;

@@ -32,6 +32,15 @@ set(COMPONENT_SRCS
 )
 endif()
 
+if (CONFIG_ESP32_TRIBEAPP_LTM_V0_2_BOARD)
+message(STATUS "Current board name is " CONFIG_ESP32_TRIBEAPP_LTM_V0_2_BOARD)
+list(APPEND COMPONENT_ADD_INCLUDEDIRS ./tribeapp_ltm_v0_2)
+set(COMPONENT_SRCS
+./tribeapp_ltm_v0_2/board.c
+./tribeapp_ltm_v0_2/board_pins_config.c
+)
+endif()
+
 
 if (CONFIG_ESP_LYRATD_MSC_V2_1_BOARD)
 message(STATUS "Current board name is " CONFIG_ESP_LYRATD_MSC_V2_1_BOARD)

@@ -399,7 +399,7 @@ void app_main(void)
 
     i2s_stream_cfg_t i2s_cfg2 = I2S_STREAM_CFG_DEFAULT();
     i2s_cfg2.type = AUDIO_STREAM_READER;
-#if defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     i2s_cfg2.i2s_port = 1;
     i2s_cfg2.i2s_config.use_apll = false;
 #endif
@@ -499,7 +499,7 @@ void app_main(void)
             i2s_stream_set_clk(i2s_stream_writer, music_info.sample_rates, music_info.bits, music_info.channels);
 #endif
 
-#if defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
             i2s_stream_set_clk(i2s_stream_reader, music_info.sample_rates, music_info.bits, music_info.channels);
 #endif
 

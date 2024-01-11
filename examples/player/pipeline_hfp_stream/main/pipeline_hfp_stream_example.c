@@ -106,7 +106,7 @@ void app_main(void)
     i2s_cfg1.i2s_config.sample_rate = g_hfp_audio_rate;
     i2s_cfg1.i2s_config.channel_format = I2S_CHANNEL_FMT_ONLY_RIGHT;
     i2s_cfg1.type = AUDIO_STREAM_READER;
-#if defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     i2s_cfg1.i2s_config.use_apll = false;
     i2s_cfg1.i2s_port = 1;
     i2s_cfg1.i2s_config.channel_format = I2S_CHANNEL_FMT_ONLY_LEFT;

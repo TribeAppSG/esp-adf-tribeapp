@@ -388,7 +388,7 @@ void app_main(void)
     ESP_LOGI(TAG, "[5.1] Create i2s stream to read data from codec chip");
     i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT();
     i2s_cfg.type = AUDIO_STREAM_READER;
-#if defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     i2s_cfg.i2s_config.use_apll = false;
     i2s_cfg.i2s_port = 1;
 #endif

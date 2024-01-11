@@ -56,7 +56,7 @@ static const char *TAG = "VOIP_EXAMPLE";
 #define I2S_SAMPLE_RATE     8000
 #define I2S_BITS            CODEC_ADC_BITS_PER_SAMPLE
 #define I2S0_CHANNELS       I2S_CHANNEL_FMT_ONLY_LEFT
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
 #define I2S1_CHANNELS       I2S_CHANNEL_FMT_RIGHT_LEFT
 #endif
 
@@ -153,13 +153,13 @@ static esp_err_t recorder_pipeline_open()
 #if !RECORD_HARDWARE_AEC
     algo_config.input_type = ALGORITHM_STREAM_INPUT_TYPE2;
 #endif
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     algo_config.ref_linear_factor = 3;
 #endif
 #if DEBUG_AEC_INPUT
     algo_config.debug_input = true;
 #endif
-#if (CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || CONFIG_ESP32_S3_KORVO2_V3_BOARD)
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined CONFIG_ESP32_S3_KORVO2_V3_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     algo_config.swap_ch = true;
 #endif
     algo_config.task_core = 1;
@@ -351,7 +351,7 @@ static esp_err_t input_key_service_cb(periph_service_handle_t handle, periph_ser
                     mute = true;
                     display_service_set_pattern(disp, DISPLAY_PATTERN_TURN_ON, 0);
                 }
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
                 audio_hal_set_mute(board_handle->adc_hal, mute);
 #endif
                 break;
@@ -507,7 +507,7 @@ void app_main()
     ESP_LOGI(TAG, "[ 2 ] Start codec chip");
     i2s_driver_init(I2S_NUM_0, I2S0_CHANNELS, I2S_BITS);
 
-#if (CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || CONFIG_ESP32_S3_KORVO2_V3_BOARD)
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined CONFIG_ESP32_S3_KORVO2_V3_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     audio_board_handle_t board_handle = (audio_board_handle_t) audio_calloc(1, sizeof(struct audio_board_handle));
     audio_hal_codec_config_t audio_codec_cfg = AUDIO_CODEC_DEFAULT_CONFIG();
     audio_codec_cfg.i2s_iface.samples = AUDIO_HAL_08K_SAMPLES;
@@ -519,7 +519,7 @@ void app_main()
     audio_hal_ctrl_codec(board_handle->audio_hal, AUDIO_HAL_CODEC_MODE_BOTH, AUDIO_HAL_CTRL_START);
     audio_hal_set_volume(board_handle->audio_hal, 60);
 
-#if CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     i2s_driver_init(I2S_NUM_1, I2S1_CHANNELS, I2S_BITS);
 #endif
 

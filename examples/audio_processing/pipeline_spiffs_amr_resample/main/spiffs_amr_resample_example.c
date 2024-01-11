@@ -74,7 +74,7 @@ static audio_element_handle_t create_i2s_stream(int sample_rates, int bits, int 
 {
     i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT();
     i2s_cfg.type = type;
-#if defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
+#if (defined CONFIG_ESP_LYRAT_MINI_V1_1_BOARD || defined ESP32_TRIBEAPP_LTM_V0_2_BOARD)
     if (i2s_cfg.type == AUDIO_STREAM_READER) {
         i2s_cfg.i2s_port = 1;
     }

@@ -17,6 +17,9 @@ endif
 ifdef CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
 ESPADF_AUDIO_BOARD_O = $(patsubst %.c,%.o,$(wildcard $(ADFCOMP)/audio_board/lyrat_mini_v1_1/*.c))
 endif
+ifdef CONFIG_ESP32_TRIBEAPP_LTM_V0_2_BOARD
+ESPADF_AUDIO_BOARD_O = $(patsubst %.c,%.o,$(wildcard $(ADFCOMP)/audio_board/TribeApp_ltm_v0_2/*.c))
+endif
 ESPADF_AUDIO_HAL_O = $(patsubst %.c,%.o,\
 	$(wildcard $(ADFCOMP)/audio_hal/*.c) \
 	$(wildcard $(ADFCOMP)/audio_hal/driver/*/*.c) \

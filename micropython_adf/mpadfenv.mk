@@ -36,6 +36,10 @@ endif
 ifdef CONFIG_ESP_LYRAT_MINI_V1_1_BOARD
 INC_ESPCOMP += -I$(ADFCOMP)/audio_board/lyrat_mini_v1_1
 endif
+ifdef CONFIG_ESP32_TRIBEAPP_LTM_V0_2_BOARD
+INC_ESPCOMP += -I$(ADFCOMP)/audio_board/TribeApp_ltm_v0_2
+endif
+
 INC_ESPCOMP += -I$(ADFCOMP)/audio_hal/include
 INC_ESPCOMP += -I$(ADFCOMP)/audio_hal/driver/include
 INC_ESPCOMP += -I$(ADFCOMP)/audio_hal/driver/es8388
