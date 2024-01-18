@@ -28,7 +28,7 @@
 
 #include "periph_sdcard.h"
 #include "led_indicator.h"
-#include "periph_adc_button.h"
+#include "periph_button.h"
 
 static const char *TAG = "AUDIO_BOARD";
 
@@ -110,18 +110,14 @@ display_service_handle_t audio_board_blue_led_init(void)
 esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
 {
     esp_err_t ret = ESP_OK;
-	/* SAS: Skip this for now
-    periph_adc_button_cfg_t adc_btn_cfg = PERIPH_ADC_BUTTON_DEFAULT_CONFIG();
-    adc_arr_t adc_btn_tag = ADC_DEFAULT_ARR();
-    adc_btn_tag.total_steps = 6;
-    int btn_array[7] = {190, 600, 1000, 1375, 1775, 2195, 3100};
-    adc_btn_tag.adc_level_step = btn_array;
-    adc_btn_cfg.arr = &adc_btn_tag;
-    adc_btn_cfg.arr_size = 1;
-    esp_periph_handle_t adc_btn_handle = periph_adc_button_init(&adc_btn_cfg);
-    AUDIO_NULL_CHECK(TAG, adc_btn_handle, return ESP_ERR_ADF_MEMORY_LACK);
-    ret = esp_periph_start(set, adc_btn_handle);
-	*/
+
+	periph_button_cfg_t btn_cfg = {
+        .gpio_mask = (1ULL << get_input_set_id()) | (1ULL << get_input_mode_id()), //SET BTN & MODE BTN
+    };
+    esp_periph_handle_t button_handle = periph_button_init(&btn_cfg);
+    AUDIO_NULL_CHECK(TAG, button_handle, return ESP_ERR_ADF_MEMORY_LACK);
+    ret = esp_periph_start(set, button_handle);
+
     return ret;
 }
 

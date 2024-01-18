@@ -126,24 +126,24 @@ esp_err_t i2s_mclk_gpio_select(i2s_port_t i2s_num, gpio_num_t gpio_num)
 
 int8_t get_sdcard_intr_gpio(void)
 {
-    return SDCARD_INTR_GPIO;
+    return -1;
 }
 
 int8_t get_sdcard_open_file_num_max(void)
 {
-    return SDCARD_OPEN_FILE_NUM_MAX;
+    return -1;
 }
 
 int8_t get_sdcard_power_ctrl_gpio(void)
 {
-    return SDCARD_PWR_CTRL;
+    return -1;
 }
 
 // input-output pins
 
 int8_t get_headphone_detect_gpio(void)
 {
-    return HEADPHONE_DETECT;
+    return -1;
 }
 
 int8_t get_pa_enable_gpio(void)
@@ -151,13 +151,38 @@ int8_t get_pa_enable_gpio(void)
     return PA_ENABLE_GPIO;
 }
 
-// adc button id
+int8_t get_led_cs_gpio(void)
+{
+    return LED_CS_GPIO;
+}
+
+int8_t get_uwb_cs_gpio(void)
+{
+    return UWB_CS_GPIO;
+}
+
+int8_t get_ammicom_cs_gpio(void)
+{
+    return AMMICOM_CS_GPIO;
+}
+
+// button pins
+
+int8_t get_input_set_id(void)
+{
+    return BUTTON_SET_ID;
+}
+
+int8_t get_input_mode_id(void)
+{
+    return BUTTON_MODE_ID;
+}
 /*
+// adc button id
 int8_t get_input_rec_id(void)
 {
-    return BUTTON_REC_ID;
+    return -1;
 }
-*/
 
 int8_t get_input_mode_id(void)
 {
@@ -169,34 +194,35 @@ int8_t get_input_set_id(void)
     return BUTTON_SET_ID;
 }
 
-/*
+
 int8_t get_input_play_id(void)
 {
-    return BUTTON_PLAY_ID;
+    return -1;
 }
 
 int8_t get_input_volup_id(void)
 {
-    return BUTTON_VOLUP_ID;
+    return -1;
 }
 
 int8_t get_input_voldown_id(void)
 {
-    return BUTTON_VOLDOWN_ID;
+    return -1;
 }
 
 // led pins
 
 int8_t get_green_led_gpio(void)
 {
-    return GREEN_LED_GPIO;
+    return -1;
 }
 
 int8_t get_blue_led_gpio(void)
 {
-    return BLUE_LED_GPIO;
+    return -1;
 }
 */
+
 
 int8_t get_es8311_mclk_src(void)
 {

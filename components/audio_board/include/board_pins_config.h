@@ -128,6 +128,30 @@ int8_t get_headphone_detect_gpio(void);
 int8_t get_pa_enable_gpio(void);
 
 /**
+ * @brief  Get the gpio number for led chip select
+ *
+ * @return  -1      non-existent
+ *          Others  gpio number
+ */
+int8_t get_led_cs_gpio(void);
+
+/**
+ * @brief  Get the gpio number for UWB module chip select
+ *
+ * @return  -1      non-existent
+ *          Others  gpio number
+ */
+int8_t get_uwb_cs_gpio(void);
+
+/**
+ * @brief  Get the gpio number for Ammicom RF module chip select
+ *
+ * @return  -1      non-existent
+ *          Others  gpio number
+ */
+int8_t get_ammicom_cs_gpio(void);
+
+/**
  * @brief  Get the gpio number for adc detection
  *
  * @return  -1      non-existent

@@ -40,6 +40,7 @@
 #define FUNC_SYS_LEN_EN           (1)
 #define BLUE_LED_GPIO             -1
 #define GREEN_LED_GPIO            -1
+#define YELLOW_LED_GPIO            -1
 
 
 /**
@@ -47,8 +48,11 @@
  */
 #define FUNC_AUDIO_CODEC_EN       (1)
 #define ES7243_MCLK_GPIO          GPIO_NUM_0
-#define HEADPHONE_DETECT          -1
+//#define HEADPHONE_DETECT          -1
 #define PA_ENABLE_GPIO            GPIO_NUM_12
+#define LED_CS_GPIO					GPIO_NUM_19
+#define UWB_CS_GPIO					GPIO_NUM_21
+#define AMMICOM_CS_GPIO				GPIO_NUM_22
 #define ES8311_MCLK_SOURCE        0   /* 0 From MCLK of esp32   1 From BCLK */
 #define CODEC_ADC_I2S_PORT        (1)
 #define CODEC_ADC_BITS_PER_SAMPLE I2S_BITS_PER_SAMPLE_16BIT
@@ -75,24 +79,24 @@ extern audio_hal_func_t AUDIO_CODEC_ES7243_DEFAULT_HANDLE;
  */
 #define FUNC_BUTTON_EN            (1)
 #define ADC_DETECT_GPIO           -1
-//#define INPUT_KEY_NUM             6
-//#define BUTTON_VOLUP_ID           0
-//#define BUTTON_VOLDOWN_ID         1
-#define BUTTON_SET_ID             2
-//#define BUTTON_PLAY_ID            3
-#define BUTTON_MODE_ID            4
-//#define BUTTON_REC_ID             5
+#define INPUT_KEY_NUM     			2             /* You need to define the number of input buttons on your board */
+
+#define BUTTON_SET_ID             GPIO_NUM_39		//GPIO num of set key (SENSOR_VN)
+#define BUTTON_MODE_ID            GPIO_NUM_34		//GPIO num of mode key (IO34)
+
+
+
 #define INPUT_KEY_DEFAULT_INFO() {                      \
-     {                                                   \
-        .type = PERIPH_ID_ADC_BTN,                      \
-        .user_id = INPUT_KEY_USER_ID_MODE,              \
-        .act_id = BUTTON_MODE_ID,                       \
+     {                                                  \
+        .type = PERIPH_ID_BUTTON,                       \
+        .user_id = INPUT_KEY_USER_ID_MODE,               \
+        .act_id = BUTTON_MODE_ID,                        \
     },                                                  \
     {                                                   \
-        .type = PERIPH_ID_ADC_BTN,                      \
-        .user_id = INPUT_KEY_USER_ID_SET,               \
-        .act_id = BUTTON_SET_ID,                        \
-    }                                                   \
+        .type = PERIPH_ID_BUTTON,                       \
+        .user_id = INPUT_KEY_USER_ID_SET,              \
+        .act_id = BUTTON_SET_ID,                       \
+    }													\
 }
 
 #endif
